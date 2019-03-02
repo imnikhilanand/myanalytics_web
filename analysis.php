@@ -1,12 +1,11 @@
 <?php
-session_start();
-$user_id=$_SESSION["user_id_session"];
 
-$conn = mysqli_connect("localhost","root","","test");
+// Connection file 
+include 'conn.php';
+//////////
 
-if(!$conn){
-	echo "Server not responding";
-}
+@$user_id = @$_SESSION["user_id_session"];
+echo "Hello ".@$_SESSION["user_name_session"];
 
 ?>
 

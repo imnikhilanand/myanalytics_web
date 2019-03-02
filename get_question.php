@@ -1,14 +1,10 @@
 <?php
 
-session_start();
-$user_id = $_SESSION["user_id_session"];
+// Connection file 
+include 'conn.php';
+//////////
 
-$conn = mysqli_connect("localhost","root","","test");
-
-if(!$conn){
-	echo "Server not responding";
-}
-
+@$user_id = @$_SESSION["user_id_session"];
 
 if($_SESSION["question_var"]==0){
 $sql = "SELECT * FROM correct WHERE `user_id`='$user_id'";
@@ -25,11 +21,12 @@ if(mysqli_num_rows($result)>0){
 			echo "<span class='level'>"."Level : ".$level=$row3["difficulty_level"]; echo "</span>";
 			echo "<span class='subject'>"."Subject : ".$subject=$row3["subject"];echo "</span>";
 			echo "<br>";
+			$test_id = $row3["test_set_id"];
 			$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 			$result4 = mysqli_query($conn,$sql4);
 			while($row4=mysqli_fetch_assoc($result4)){
 			?>
-			<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+			<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 			<?php
 			} 	
 		}
@@ -44,11 +41,12 @@ if(mysqli_num_rows($result)>0){
 				echo "<span class='level'>"."Level : ".$level=$row4["difficulty_level"];echo "</span>";
 				echo "<span class='subject'>"."Subject : ".$subject=$row4["subject"]; echo "</span>";	
 				echo "<br>";
+				$test_id = $row4["test_set_id"];
 				$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 				$result4 = mysqli_query($conn,$sql4);
 				while($row4=mysqli_fetch_assoc($result4)){
 				?>
-				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 				<?php
 				} 
 			}
@@ -63,11 +61,12 @@ if(mysqli_num_rows($result)>0){
 					echo "<span class='level'>"."Level : ".$level=$row5["difficulty_level"]; echo "</span>";
 					echo "<span class='subject'>"."Subject : ".$subject=$row5["subject"]; echo "</span>";
 					echo "<br>";
+					$test_id = $row5["test_set_id"];
 					$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 					$result4 = mysqli_query($conn,$sql4);
 					while($row4=mysqli_fetch_assoc($result4)){
 					?>
-					<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+					<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 					<?php
 					} 	
 				}
@@ -84,11 +83,12 @@ if(mysqli_num_rows($result)>0){
 	echo "<span class='level'>"."Level : ".$level=$row2["difficulty_level"]; echo "</span>";
 	echo "<span class='subject'>"."Subject : ".$subject=$row2["subject"]; echo "</span>";	
 	echo "<br>";
+	$test_id = $row2["test_set_id"];
 	$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 	$result4 = mysqli_query($conn,$sql4);
 	while($row4=mysqli_fetch_assoc($result4)){
 		?>
-		<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+		<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 		<?php
 	} 
 	}
@@ -116,11 +116,12 @@ if(mysqli_num_rows($result)>0){
 				echo "<span class='level'>"."Level : ".$level=$row7["difficulty_level"]; echo "</span>";
 				echo "<span class='subject'>"."Subject : ".$subject=$row7["subject"]; echo "</span>";
 				echo "<br>";
+				$test_id = $row7["test_set_id"];
 				$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 				$result4 = mysqli_query($conn,$sql4);
 				while($row4=mysqli_fetch_assoc($result4)){
 				?>
-				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 				<?php
 				} 	
 			}
@@ -136,11 +137,12 @@ if(mysqli_num_rows($result)>0){
 				echo "<span class='level'>"."Level : ".$level=$row8["difficulty_level"]; echo "</span>";
 				echo "<span class='subject'>"."Subject : ".$subject=$row8["subject"]; echo "</span>";	
 				echo "<br>";
+				$test_id = $row8["test_set_id"];
 				$sql4 = "SELECT * FROM option WHERE `ques_id`='$ques_id'"; 
 				$result4 = mysqli_query($conn,$sql4);
 				while($row4=mysqli_fetch_assoc($result4)){
 				?>
-				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
+				<button class="option_btn" onclick="abc(<?php echo $row4["id"];?>,<?php echo $test_id;?>,<?php echo $ques_id;?>,<?php echo $level;?>,<?php echo $subject;?>)"><?php echo $row4["choices"]?></button>
 				<?php
 				} 
 			}
